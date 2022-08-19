@@ -1,0 +1,96 @@
+Microsoft Windows [versão 10.0.19043.1165]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\Alunos>cd c:\xampp\mysql\bin
+
+c:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 56
+Server version: 10.4.17-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use revisao;
+Database changed
+MariaDB [revisao]> select * from produtos;
+Empty set (0.002 sec)
+
+MariaDB [revisao]> describe produtos;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| codigo       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome_produto | varchar(255) | YES  |     | NULL    |                |
+| cor          | varchar(255) | YES  |     | NULL    |                |
+| preco        | decimal(5,2) | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.019 sec)
+
+MariaDB [revisao]> insert into produtos (nome_produto,cor,preco) values
+    -> ('borracha','branca',2.00),
+    -> ('caderno','preto',10.00),
+    -> ('shamppo','verde',16.00),
+    -> ('lapis','azul',3.00),
+    -> ('caneta','azul',5.00),
+    -> ('branquinho','branco',6.00),
+    -> ('sabonete','rosa',1.00),
+    -> ('diario','preto',8.00),
+    -> ('corretivo','amarelo',7.00),
+    -> ('lampada','branco',10.00);
+Query OK, 10 rows affected (0.011 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [revisao]> select * from produos
+    -> ;
+ERROR 1146 (42S02): Table 'revisao.produos' doesn't exist
+MariaDB [revisao]> select * from produtos;
++--------+--------------+---------+-------+
+| codigo | nome_produto | cor     | preco |
++--------+--------------+---------+-------+
+|      1 | borracha     | branca  |  2.00 |
+|      2 | caderno      | preto   | 10.00 |
+|      3 | shamppo      | verde   | 16.00 |
+|      4 | lapis        | azul    |  3.00 |
+|      5 | caneta       | azul    |  5.00 |
+|      6 | branquinho   | branco  |  6.00 |
+|      7 | sabonete     | rosa    |  1.00 |
+|      8 | diario       | preto   |  8.00 |
+|      9 | corretivo    | amarelo |  7.00 |
+|     10 | lampada      | branco  | 10.00 |
++--------+--------------+---------+-------+
+10 rows in set (0.001 sec)
+
+MariaDB [revisao]> select * from compras;
+Empty set (0.000 sec)
+
+MariaDB [revisao]> describe compras;
++-------------+---------+------+-----+---------+----------------+
+| Field       | Type    | Null | Key | Default | Extra          |
++-------------+---------+------+-----+---------+----------------+
+| nf          | int(11) | NO   | PRI | NULL    | auto_increment |
+| data_compra | date    | YES  |     | NULL    |                |
+| id_cliente  | int(11) | YES  | MUL | NULL    |                |
+| codigo      | int(11) | YES  | MUL | NULL    |                |
++-------------+---------+------+-----+---------+----------------+
+4 rows in set (0.019 sec)
+
+MariaDB [revisao]> insert into compras (data_compra,id_cliente,codigo) values
+    -> ('2022-06-22',1,5),
+    -> ('2022-06-23',1,10),
+    -> ('2022-06-24',2,2);
+Query OK, 3 rows affected (0.002 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [revisao]> select * from compras;
++----+-------------+------------+--------+
+| nf | data_compra | id_cliente | codigo |
++----+-------------+------------+--------+
+|  1 | 2022-06-22  |          1 |      5 |
+|  2 | 2022-06-23  |          1 |     10 |
+|  3 | 2022-06-24  |          2 |      2 |
++----+-------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [revisao]>
